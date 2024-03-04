@@ -1,0 +1,21 @@
+{% extends model('component') %}
+{% import model('component') as component %}
+
+{% define config = {
+    name: 'modal-container',
+    tag: 'modal-container',
+} %}
+
+{% define data = {
+    extraClasses: '',
+} %}
+
+{% define attributes = {
+    'overlay-block-class-name': 'js-overlay-block',
+} %}
+
+{% block body %}
+    <div class="{{ config.name }}__content {{ config.jsName }}__content {{ data.extraClasses }}">
+    </div>
+    {% block trigger %}{% endblock %}
+{% endblock %}

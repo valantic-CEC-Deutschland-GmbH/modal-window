@@ -1,0 +1,286 @@
+@mixin shop-ui-modal-content($name: '.modal-container') {
+    #{$name} {
+        &__content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: $setting-zi-modal;
+            opacity: 0;
+        }
+
+        &--open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        &__dialog {
+            display: flex;
+            flex-flow: row wrap;
+            position: relative;
+            transform: translateY(-30%);
+            opacity: 0;
+            width: auto;
+            background: $setting-color-bg;
+            max-height: 90%;
+            pointer-events: auto;
+            border: 1px solid $setting-color-black;
+
+            &--open {
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            &--large {
+                width: rem(968);
+                max-width: 90%;
+            }
+        }
+
+        &__header {
+            padding: rem(15);
+            width: 100%;
+
+            &--empty {
+                padding: rem(25);
+                border-bottom: 1px solid $setting-color-gray-7;
+            }
+
+            &--border {
+                border: 1px solid $setting-color-alpha-6;
+            }
+        }
+
+        &__title {
+            display: flex;
+            align-items: center;
+            font-size: rem(26);
+            line-height: rem(34);
+            position: relative;
+            padding: rem(15) rem(15) 0 rem(15);
+            width: 100%;
+            margin: 0;
+
+            &--cart {
+                padding: 0;
+                margin-bottom: rem(25);
+            }
+
+            &--no-padding {
+                padding: 0;
+            }
+        }
+
+        &__body {
+            width: 100%;
+            display: flex;
+            flex-flow: row wrap;
+
+            object,
+            iframe {
+                min-width: 100%;
+                min-height: 100%;
+            }
+        }
+
+        &__footer {
+            display: flex;
+            justify-content: center;
+            padding: rem(15);
+            margin-bottom: rem(15);
+            width: 100%;
+        }
+
+        &--cad-modal {
+            #{$name}__dialog {
+                width: rem(600);
+            }
+
+            .content--inner {
+                width: 100%;
+                height: rem(545);
+            }
+
+            .modal-logo {
+                display: inline-block;
+                vertical-align: bottom;
+                line-height: rem(34);
+                height: rem(34);
+                width: auto;
+
+                .sublogo {
+                    vertical-align: bottom;
+                    line-height: 1;
+                }
+
+                .icon--logo {
+                    width: rem(120);
+                }
+            }
+        }
+
+        &__close {
+            cursor: pointer;
+            position: absolute;
+            z-index: $setting-zi-element+5;
+            top: 0;
+            right: 0;
+            padding: rem(15);
+
+            .close {
+                width: rem(21);
+                height: rem(21);
+                position: relative;
+                display: inline-block;
+
+                &::before,
+                &::after {
+                    position: absolute;
+                    display: inline-block;
+                    content: '';
+                    left: 50%;
+                    top: 50%;
+                    width: 100%;
+                    height: rem(1);
+                    background: $setting-color-alpha-10;
+                }
+
+                &::before {
+                    transform: translate(-50%, -50%) rotate(45deg);
+                }
+
+                &::after {
+                    transform: translate(-50%, -50%) rotate(-45deg);
+                }
+            }
+        }
+
+        &__outer-wrapper {
+            padding: rem(15);
+            width: 100%;
+        }
+
+        &__actions {
+            &__button {
+                font: fw(lighter) rem(18)/rem(26) $setting-font-family;
+                margin-bottom: rem(5);
+                color: $setting-color-gray-4;
+                border: 1px solid $setting-color-gray-10;
+                background: $setting-color-white;
+                padding: rem(16) rem(67) rem(16) rem(37);
+                letter-spacing: rem(0.5);
+
+                &::after {
+                    right: rem(28);
+                }
+
+                &:hover {
+                    background: $setting-color-white;
+                    color: $setting-color-gray-5;
+
+                    &::after {
+                        right: rem(22);
+                    }
+                }
+            }
+        }
+
+        &__alert {
+            padding: rem(15);
+            margin-bottom: rem(20);
+            border: 1px solid transparent;
+            border-radius: rem(4);
+            margin-top: rem(10);
+        }
+
+        &--body-overflow {
+            #{$name}__content {
+                height: 80%;
+                transform: translateY(15%);
+
+                #{$name}__dialog {
+                    overflow-y: auto;
+                    border: 1px solid $setting-color-alpha-6;
+                }
+            }
+        }
+
+        &--oci-modal,
+        &--loading-modal {
+            pointer-events: none;
+        }
+
+        &--loading-modal {
+            .content {
+                &--inner {
+                    text-align: center;
+                    font-weight: fw(normal);
+                }
+            }
+        }
+
+        &--delete-modal {
+            #{$name}__actions {
+                &__button {
+                    margin: 0;
+                }
+            }
+        }
+
+        &--custom-text-modal {
+            .custom-text-modal {
+                &__textarea-container {
+                    margin-top: rem(16);
+                    height: 70%;
+
+                    > textarea {
+                        height: 100%;
+                        resize: none;
+                    }
+                }
+
+                &__buttons-container {
+                    display: flex;
+                    flex-direction: row-reverse;
+                    margin-top: rem(16);
+
+                    > * {
+                        margin-left: rem(5);
+                    }
+                }
+            }
+        }
+
+        &__message {
+            padding-bottom: rem(20);
+        }
+
+        &__buttons {
+            display: flex;
+            justify-content: flex-end;
+
+            &--form {
+                height: 100%;
+                padding-left: rem(5);
+            }
+
+            .button {
+                height: 100%;
+            }
+        }
+
+        .custom-select__carret {
+            z-index: $setting-zi-modal + 1;
+        }
+
+        @content;
+    }
+}
+
+@include shop-ui-modal-content;

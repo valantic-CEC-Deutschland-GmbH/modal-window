@@ -1,0 +1,179 @@
+@mixin modal-window($name: ".modal-window") {
+    #{$name} {
+        &__modal-wrapper {
+            display: none;
+            position: fixed;
+            z-index: $setting-zi-modal;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: $setting-color-alpha-11;
+
+            &.visible {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+
+        &__modal {
+            background-color: $setting-color-white;
+            box-shadow: 0 3px 6px $setting-color-alpha-10;
+            border-radius: 8px;
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        &__close-button {
+            position: absolute;
+            top: rem(-10);
+            right: rem(-10);
+            width: rem(32);
+            height: rem(32);
+            background: $setting-color-white;
+            padding-top: rem(3);
+            padding-left: rem(1);
+            text-align: center;
+            border: 1px solid $setting-color-gray-12;
+            cursor: pointer;
+            color: $setting-color-gray-11;
+        }
+
+        &__modal-header {
+            color: $setting-color-blue-3;
+            font-weight: fw(bold);
+            font-family: $setting-font-family;
+            font-size: rem(21);
+            line-height: rem(27);
+            margin-bottom: rem(16);
+        }
+
+        &__modal-content {
+            margin-top: rem(16);
+            color: $setting-color-blue-3;
+            font-weight: fw(normal);
+            font-family: $setting-font-family;
+            font-size: rem(16);
+            line-height: rem(24);
+            margin-bottom: rem(38);
+        }
+
+        &__inner-content {
+            height: 100%;
+            width: 100%;
+            padding: rem(24);
+            overflow: auto;
+        }
+
+        @media only screen and (max-height: 360px) {
+            #{$name} {
+                &__modal {
+                    height: 100%;
+                }
+            }
+        }
+
+        &--small {
+            #{$name} {
+                &__modal {
+                    width: rem(400);
+                }
+            }
+        }
+
+        &--geolocation {
+            #{$name} {
+                &__modal {
+                    width: rem(480);
+                }
+
+                &__modal-content {
+                    margin-bottom: rem(16);
+                }
+            }
+        }
+
+        &--medium {
+            #{$name} {
+                &__modal {
+                    width: rem(600);
+                }
+            }
+        }
+
+        &--calalog-request {
+            #{$name} {
+                &__modal {
+                    width: rem(600);
+                    height: rem(658);
+                }
+
+                &__modal-header {
+                    display: none;
+                }
+
+                &__modal-wrapper {
+                    z-index: $setting-zi-modal;
+                }
+
+                &__inner-content {
+                    &::-webkit-scrollbar {
+                        display: none;
+                    }
+                    -ms-overflow-style: none;
+                    scrollbar-width: none;
+                }
+
+                &__modal-content {
+                    margin-top: 0;
+
+                    &::-webkit-scrollbar {
+                        display: none;
+                    }
+                    -ms-overflow-style: none;
+                    scrollbar-width: none;
+                }
+            }
+        }
+
+        &--calalog-request-email {
+            #{$name} {
+                &__modal {
+                    width: rem(600);
+                    height: rem(344);
+                }
+            }
+        }
+
+        &__with-blue-line {
+            border-bottom: solid $setting-color-blue-2 2px;
+            border-radius: 3px;
+            width: rem(40);
+        }
+
+        &--with-dashed-lines {
+            #{$name} {
+                &__modal-content {
+                    border-top: 1px dashed $setting-color-gray-11;
+                    border-bottom: 1px dashed $setting-color-gray-11;
+                    padding-top: rem(16);
+                    padding-bottom: rem(19);
+                    margin-bottom: rem(12);
+                }
+            }
+        }
+
+        &--no-close {
+            #{$name} {
+                &__close-button {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+@include modal-window();
